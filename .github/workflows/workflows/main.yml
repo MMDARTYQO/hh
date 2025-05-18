@@ -1,0 +1,36 @@
+name: Download and Upload File
+
+on:
+  workflow_dispatch:
+    inputs:
+      file_url:
+        description: 'Direct file URL to download'
+        required: true
+        default: 'https://dumps.wikimedia.org/hewiki/latest/hewiki-latest-pages-articles.xml.bz2'
+jobs:
+  download-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Git LFS
+        run: git lfs install
+
+      - name: Download file
+        run: |
+          # Create downloads directory if it doesn't exist
+          mkdir -p downloads
+          # Download the file using curl
+          curl -L "${{ github.event.inputs.file_url }}" -o "downloads/downloaded_file"
+        
+      - name: Track large file with Git LFS
+        run: git lfs track "downloads/downloaded_file"
+
+      - name: Commit and push file
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .gitattributes downloads/downloaded_file
+          git commit -m "Add downloaded file to Git LFS"
+          git push
