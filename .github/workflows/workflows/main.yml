@@ -6,7 +6,7 @@ on:
       file_url:
         description: 'Direct file URL to download'
         required: true
-        default: 'https://dumps.wikimedia.org/hewiki/latest/hewiki-latest-pages-articles.xml.bz2'
+        default: 'https://dnznrvs05pmza.cloudfront.net/49d167e3-6728-48a7-9bd3-f1e232d7ee19.mp4?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiOTdiMTc1ZDE5Y2I2Y2RhZSIsImJ1Y2tldCI6InJ1bndheS10YXNrLWFydGlmYWN0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc0NzY5OTIwMH0.8HGaAj41XuZu9OBNSkPqEZL9PsiUABwGbEpJVLDPQp8'
 jobs:
   download-and-upload:
     runs-on: ubuntu-latest
